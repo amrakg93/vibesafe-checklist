@@ -96,4 +96,21 @@ These are just the header checks. A complete security audit covers all 16 checks
 - Data breach check
 - Trust badge
 
-**Full scan → [VibeSafe](https://vibesafe.store) — $49 one-time, all 16 checks, report in 24 hours.**
+**Full scan → [VibeSafe](https://vibesafe.store) — $49 one-time, all 24 checks, report in 24 hours.**
+
+---
+
+## Updated Benchmark — 19 Apps Scanned (July 2026)
+
+Using the VibeSafe 24-check scanner against real vibe-coded apps:
+
+| Metric | Result |
+|--------|--------|
+| Apps scanned | 19 |
+| Apps with ≥1 HIGH issue | **15/19 (79%)** |
+| Missing CSP | **100%** |
+| Missing X-Frame-Options | **80%** |
+| Exposed dependency files | **40%** |
+| Secrets in JS bundles | **15%** |
+
+See VIBESAFE-WRITEUP.md for the full breakdown.
