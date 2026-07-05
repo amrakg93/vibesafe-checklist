@@ -145,10 +145,10 @@ Or use the hosted service at **[vibesafe.store](https://vibesafe.store)** — su
 
 | Feature | Status |
 |---------|--------|
-| Dependency audit (npm audit integration) | Planned |
-| API endpoint discovery (from JS parsing) | Planned |
-| Open redirect detection | Planned |
-| Form CSRF token checker | Planned |
-| Automated CI/CD integration (GitHub Actions) | Planned |
-| Per-subdomain full scan | Planned |
-| Historical scan tracking | Planned |
+| Dependency audit (npm audit integration) | **Done** — checks 4 known CVEs |
+| API endpoint discovery (from JS parsing) | **Done** — parses bundles for hidden routes |
+| Open redirect detection | Not started |
+| Form CSRF token checker | Not started |
+| Automated CI/CD integration (GitHub Actions) | **Done** — YAML workflow ready |
+| Per-subdomain full scan | Not started |
+| Historical scan tracking | Not started |
