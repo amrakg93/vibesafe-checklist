@@ -175,8 +175,100 @@ Create a WAF rule blocking requests to:
 
 ---
 
+## 8. Fix Source Map Exposure
+
+Source maps let anyone read your full uncompiled code in DevTools.
+```js
+// Vite — disable in production
+// vite.config.ts
+export default defineConfig({
+  build: { sourcemap: false }
+})
+
+// Next.js
+// next.config.js
+module.exports = {
+  productionBrowserSourceMaps: false,
+}
+
+// Create React App
+// Build with: GENERATE_SOURCEMAP=false react-scripts build
+```
+
+---
+
+## 9. Fix Cookie Security
+
+```javascript
+// Express.js — secure cookies
+res.cookie('session', token, {
+  httpOnly: true,    // not accessible via JavaScript
+  secure: true,      // only sent over HTTPS
+  sameSite: 'lax',   // prevents CSRF
+  maxAge: 7 * 24 * 60 * 60 * 1000 // 7 days
+});
+```
+
+---
+
+## 10. Fix Exposed Dependency Files
+
+Block these in your server config:
+- `/package.json`
+- `/package-lock.json`
+- `/yarn.lock`
+- `/requirements.txt`
+- `/Dockerfile`
+
+### Hostinger (.htaccess)
+```apache
+<FilesMatch "\.(json|lock|txt)$">
+  Order allow,deny
+  Deny from all
+</FilesMatch>
+```
+
+### Vercel (vercel.json)
+```json
+{ "source": "/package.json", "destination": "/404", "permanent": false }
+```
+
+---
+
+## 11. Fix Dependency Vulnerabilities
+
+```bash
+# Check for known CVEs
+npm audit
+
+# Fix automatically
+npm audit fix
+
+# For specific packages
+npm install lodash@4.17.21       # fixes CVE-2024-4068
+npm install axios@1.7.4          # fixes CVE-2024-39338
+npm install next@14.2.21         # fixes CVE-2024-51479
+```
+
+---
+
+## 12. Enable Commit Signing (Supply Chain)
+
+```bash
+# GPG signing
+git config --global user.signingkey YOUR_GPG_KEY
+git config --global commit.gpgsign true
+
+# SSH signing
+git config --global gpg.format ssh
+git config --global user.signingkey ~/.ssh/id_ed25519.pub
+git config --global commit.gpgsign true
+```
+
+---
+
 ## Run the Automated Scan
 
-Each fix above was identified from actual Lovable app vulnerabilities.  
-A [VibeSafe scan](https://vibesafe.store) catches all of these automatically.  
+Each fix above was identified from actual vibe-coded app vulnerabilities.  
+A [VibeSafe scan](https://vibesafe.store) catches all 24 checks automatically.  
 **$49 one-time, report within 24 hours.**
